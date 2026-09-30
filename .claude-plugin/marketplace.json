@@ -1,0 +1,16 @@
+{
+  "name": "kendoo-rd",
+  "owner": {
+    "name": "Kendoo R&D Consulting"
+  },
+  "metadata": {
+    "description": "Free Claude Code skills by Kendoo R&D Consulting."
+  },
+  "plugins": [
+    {
+      "name": "under25",
+      "source": "./plugins/under25",
+      "description": "Short, plain replies: 25-30 words, B1-level English, no jargon."
+    }
+  ]
+}

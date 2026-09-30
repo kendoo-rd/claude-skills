@@ -1,0 +1,8 @@
+{
+  "name": "under25",
+  "version": "1.0.0",
+  "description": "Short, plain replies: 25-30 words, B1-level English, no jargon.",
+  "author": { "name": "Kendoo R&D Consulting" },
+  "homepage": "https://github.com/kendoo-rd/claude-skills",
+  "license": "MIT"
+}
