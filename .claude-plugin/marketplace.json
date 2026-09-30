@@ -11,6 +11,11 @@
       "name": "under25",
       "source": "./plugins/under25",
       "description": "Short, plain replies: 25-30 words, B1-level English, no jargon."
+    },
+    {
+      "name": "jira-buddy",
+      "source": "./plugins/jira-buddy",
+      "description": "A friendly helper for Jira: files clear tickets, finds related work, splits big jobs, updates tickets and posts plain progress comments."
     }
   ]
 }

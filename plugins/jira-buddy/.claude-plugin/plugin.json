@@ -1,0 +1,9 @@
+{
+  "name": "jira-buddy",
+  "version": "1.0.0",
+  "description": "A friendly helper for Jira: files clear tickets, finds related work, splits big jobs, updates tickets and posts plain progress comments.",
+  "author": { "name": "Kendoo R&D Consulting" },
+  "homepage": "https://github.com/kendoo-rd/claude-skills",
+  "license": "MIT",
+  "keywords": ["jira", "atlassian", "confluence", "tickets", "project-management"]
+}

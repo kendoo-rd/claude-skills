@@ -34,6 +34,28 @@ Ask for short or plain answers ("keep it short", "B1 English", "no jargon"), or 
 Always follow the under25 skill: every reply 25-30 words, B1-level English.
 ```
 
+### jira-buddy
+
+A friendly helper for Jira. Tell it about a problem in plain words, and it:
+
+- finds duplicates, the right epic, related Confluence pages, Product
+  Discovery ideas and known issues in Service Management,
+- drafts a clear ticket with a plain half for everyone and a technical half
+  for the person doing the work,
+- splits big requests into an epic with smaller tickets,
+- updates status, labels and assignee safely,
+- posts short, plain progress comments as the work moves.
+
+Nothing is created or changed in Jira until you say yes.
+
+Needs the Atlassian connector for Claude, signed in to your site. On first use
+it looks up your projects and saves a small settings file at
+`.claude/jira-buddy.json` in your project, so your team can share it.
+
+```
+/plugin install jira-buddy@kendoo-rd
+```
+
 ## License
 
 MIT
