@@ -18,9 +18,11 @@ Then install any skill below.
 
 Keeps replies short and simple.
 
-- Every reply is 25 to 30 words.
-- Plain B1-level English.
-- No technical terms unless they are truly needed.
+- Routine replies are 25 words or fewer. No minimum, no padding.
+- Plain B1-level English, no technical terms unless truly needed.
+- Asked only for simple English? You get plain words with the full detail.
+- Drafts, reviews, reports and code keep their full format. Only the text
+  around them is short.
 
 Claude still does the full work. Only the reply you read is short.
 
@@ -31,7 +33,7 @@ Claude still does the full work. Only the reply you read is short.
 Ask for short or plain answers ("keep it short", "B1 English", "no jargon"), or type `/under25`. To use it in every session, add this line to your `CLAUDE.md`:
 
 ```
-Always follow the under25 skill: every reply 25-30 words, B1-level English.
+Always follow the under25 skill: routine replies in 25 words or fewer, B1-level English.
 ```
 
 ### jira-buddy

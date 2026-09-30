@@ -10,7 +10,7 @@
     {
       "name": "under25",
       "source": "./plugins/under25",
-      "description": "Short, plain replies: 25-30 words, B1-level English, no jargon."
+      "description": "Short, plain replies: routine replies in 25 words or fewer, B1-level English, no jargon. Drafts, reviews and code keep their full format."
     },
     {
       "name": "jira-buddy",
