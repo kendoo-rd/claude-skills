@@ -16,6 +16,11 @@
       "name": "jira-buddy",
       "source": "./plugins/jira-buddy",
       "description": "A friendly helper for Jira: files clear tickets, finds related work, splits big jobs, updates tickets and posts plain progress comments."
+    },
+    {
+      "name": "review-buddy",
+      "source": "./plugins/review-buddy",
+      "description": "A careful code review: checks the change against what was asked, correctness, security, performance, codebase conventions and tests, with file:line evidence and a plain verdict."
     }
   ]
 }

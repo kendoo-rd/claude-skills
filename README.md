@@ -56,6 +56,27 @@ it looks up your projects and saves a small settings file at
 /plugin install jira-buddy@kendoo-rd
 ```
 
+### review-buddy
+
+A careful second pair of eyes on a code change. It reviews a pull request, a
+branch or uncommitted work and checks:
+
+- does it do what was asked (ticket, pull request text or plan),
+- correctness: logic, error handling, race conditions, memory and resource
+  leaks,
+- design, security, performance, breaking changes and new libraries,
+- does it follow the codebase's own conventions and patterns,
+- do the tests really test the change.
+
+Every finding points to a file and line. The report ends with a verdict and a
+short summary anyone can read. It never changes your code.
+
+```
+/plugin install review-buddy@kendoo-rd
+```
+
+Then ask "review my changes" or "review PR #12".
+
 ## License
 
 MIT
