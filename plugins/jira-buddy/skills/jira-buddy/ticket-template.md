@@ -33,12 +33,24 @@ A short bulleted list of checks a non-technical person could do.
 ## The tech part
 
 ### Current state
-- Full file paths with line numbers
-  (`path/to/file.ext:10-15`).
-- A 5-15 line excerpt of the real code, in a fenced code block.
-- One sentence on why this code causes the problem.
+
+Keep facts and guesses apart. A good ticket does not need a proven cause.
+
+- **Observed:** what was seen, and where (steps, error text, screen, logs).
+  When the code was checked: full file paths with line numbers
+  (`path/to/file.ext:10-15`) and a 5-15 line excerpt of the real code.
+- **Cause:** either "Confirmed:" with one sentence on why this code causes
+  the problem, or "Suspected:" with the likely cause and what points to it.
+  Never state a guess as a fact.
+- **To investigate** (only when the cause is not confirmed): the checks that
+  would confirm it, for example reproduce with these steps, read these logs,
+  compare these settings.
 
 ### Fix
+
+When the cause is only suspected, write the fix as a proposal, or leave this
+section as "After investigation".
+
 - Numbered steps describing the change.
 - A code snippet of the fix shape, if it helps. Real-looking code, not
   pseudocode.

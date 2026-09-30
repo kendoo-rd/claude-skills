@@ -38,7 +38,8 @@ Post the staging or production line only after the deploy of that exact
 change has finished. Adapt the environment names to the team's own.
 
 Ask before posting, unless the user already said to comment at each step for
-this ticket.
+this ticket (see the hard rules in `SKILL.md`). Keep the comment id each post
+returns, so you can correct that comment instead of adding a new one.
 
 ## Mentioning people
 
@@ -47,6 +48,19 @@ thanking, handing over), use a real @-mention so they get notified. A typed
 name does nothing.
 
 1. Find the account id with `lookupJiraAccountId`.
-2. Write `[~accountid:<id>]` in the text.
-3. If it shows as plain text instead of a mention, post again with
-   `contentFormat: "adf"` and a `mention` node that carries the account id.
+2. Post the comment with `contentFormat: "adf"` and a `mention` node that
+   carries the account id. Markdown mentions (`[~accountid:<id>]`) do not
+   always turn into real mentions, so use ADF from the start whenever a
+   mention matters.
+
+   ```json
+   {"type": "doc", "version": 1, "content": [{"type": "paragraph", "content": [
+     {"type": "mention", "attrs": {"id": "<account-id>"}},
+     {"type": "text", "text": " this is ready for you to test."}
+   ]}]}
+   ```
+
+3. If the mention still shows as plain text, update **the same comment**
+   (pass its `commentId`). Never post a second comment to fix the first. If
+   your connector cannot update comments, tell the user and let them fix it
+   in Jira.

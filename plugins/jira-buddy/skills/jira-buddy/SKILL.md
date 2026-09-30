@@ -29,11 +29,27 @@ Side files in this folder, read them when the step needs them:
 
 ## Before anything: check the connector
 
-This skill needs the Atlassian connector (MCP), with tools such as
-`getAccessibleAtlassianResources`, `createJiraIssue` and
-`searchJiraIssuesUsingJql`. If they are missing, tell the user in one line
-that the Atlassian connector must be added and signed in, then stop. Do not
-fake a ticket in a local file instead.
+This skill needs the Atlassian connector (MCP). Tool names and features
+change between connector versions, so look at the tools you actually have
+and match them by purpose, not by exact name:
+
+| Purpose | Name in the version this was tested with |
+| --- | --- |
+| List sites | `getAccessibleAtlassianResources` |
+| Search tickets | `searchJiraIssuesUsingJql` |
+| Read / create / edit a ticket | `getJiraIssue`, `createJiraIssue`, `editJiraIssue` |
+| Move status | `getTransitionsForJiraIssue`, `transitionJiraIssue` |
+| Add or update a comment | `addCommentToJiraIssue` (with `commentId` to update) |
+| Link tickets | `createIssueLink`, `getIssueLinkTypes` |
+| Required fields | `getJiraIssueTypeMetaWithFields` |
+| Find a person | `lookupJiraAccountId` |
+| Search Confluence | `searchConfluenceUsingCql` |
+
+Read each tool's own description before first use; it beats anything
+written here. If there are no Atlassian tools at all, tell the user in one
+line that the connector must be added and signed in, then stop. Do not fake
+a ticket in a local file instead. If one feature is missing (for example
+attachments), say so and offer the manual step.
 
 ## What the user can ask for
 
@@ -44,10 +60,21 @@ fake a ticket in a local file instead.
 | "Move this ticket to done", "add a label", "assign it to someone" | Update ticket |
 | "Comment that it's live", PR opened, deploy finished | Progress comment |
 
-## The flow
+## Route by intent first
 
-1. **Load settings.** Read `.claude/jira-buddy.json` in the project. If it is
-   missing, run first-time setup (`setup.md`) and come back.
+Decide which of the four requests above this is, then follow only that path.
+Research and full drafts are for new work; a label change does not need a
+duplicate search.
+
+Every path starts by loading settings: read `.claude/jira-buddy.json` in the
+project. If it is missing, run first-time setup (`setup.md`) and come back.
+(For a single update or comment on a ticket the user named by key, only the
+site is needed; if settings are missing, find the site and skip the rest of
+setup.)
+
+## New ticket
+
+1. **Load settings** (above).
 2. **Find related items** (`related-items.md`). Always look for duplicates and
    the right epic. Also look in Product Discovery, Confluence and Service
    Management when the settings list them. Show what you found in a short
@@ -65,16 +92,20 @@ fake a ticket in a local file instead.
    full description, priority, labels, links to related items, and a
    suggested assignee with a one-line reason (see "Assignee" below). For big
    work, show the epic plus every child ticket.
-6. **Create or change it only after a yes.** Then add the links, and give the
-   user a clickable link for every ticket touched.
+   Before showing the draft, check the project's required fields for that
+   issue type (`getJiraIssueTypeMetaWithFields`) and fill them, so creation
+   does not fail halfway.
+6. **Create it only after a yes.** Then add the links, and give the user a
+   clickable link for every ticket touched.
 7. **Narrate delivery later** with one-sentence comments (`comments.md`).
 
-Never skip step 2 or step 5. A vague ticket gets bounced back; a concrete one
-saves the next person hours.
+For a new ticket, never skip step 2 or step 5. A vague ticket gets bounced
+back; a concrete one saves the next person hours.
 
 ## Big work: one epic, small tickets
 
-When a request has several parts or spans more than one team:
+Follow the "New ticket" steps, with these additions. When a request has
+several parts or spans more than one team:
 
 - Suggest an existing epic if one fits; otherwise draft a new epic.
 - Split into 3-8 child tickets. Each one must be deliverable on its own.
@@ -82,10 +113,32 @@ When a request has several parts or spans more than one team:
   field and the app shows it), make one ticket per project, cross-link them,
   write "Paired with {OTHER-KEY}" in both, and state the order. The one that
   ships first must not break anything while the other is pending.
-- Show the whole tree as one draft. Create the epic first, then the children
-  with `parent` set to the epic key.
+- Show the whole tree as one draft, with required fields checked for every
+  issue type used. Create the epic first, then the children with `parent` set
+  to the epic key.
 
-## Updating a ticket
+**Many writes can fail halfway.** Protect against duplicates:
+
+1. Keep a running list as you go: each draft item and the key Jira returned
+   for it. Show it to the user at the end.
+2. If a call fails or times out, stop. Do not retry blindly: the ticket may
+   have been created even though the call reported an error.
+3. Check first: search for the summary under the same parent
+   (`parent = {EPIC-KEY} AND summary ~ "..."`), or read the epic's children.
+4. Create only what is really missing. Then continue with the rest.
+5. If you cannot finish, tell the user exactly what was created (with links)
+   and what was not.
+
+## Update ticket (short path)
+
+1. **Read the ticket** the user named (`getJiraIssue`). If they did not name
+   one, find it with a quick search and confirm which one.
+2. **Check the change is valid** with only the checks below that apply.
+3. **Show the change** in one or two lines ("KEY-12: status In Progress ->
+   Done, add label `needs-review`") and wait for a yes.
+4. **Apply it** and give the link.
+
+No duplicate search, no epic search, no full draft.
 
 - **Status:** call `getTransitionsForJiraIssue` for that ticket first. Never
   reuse a transition id from memory or from another project.
@@ -93,7 +146,12 @@ When a request has several parts or spans more than one team:
   Setting labels replaces them all.
 - **Assignee:** look up the account id with `lookupJiraAccountId`.
 - **Description:** show the changed part before saving.
-- Show what will change and wait for a yes, the same as for a new ticket.
+
+## Progress comment (short path)
+
+Write the one-sentence comment (`comments.md`), show it, post after a yes,
+and give the link. If the user already approved comments at each step for
+this ticket, post without asking again.
 
 ## Assignee
 
@@ -105,8 +163,11 @@ after the user agrees.
 
 ## Hard rules
 
-- **Nothing is created, changed or commented without a yes.**
-- **Search for duplicates before drafting.**
+- **Nothing is created, changed or commented without a yes.** A yes covers
+  what was shown. One exception: if the user says to post progress comments
+  at each step for a ticket, that yes covers those comments until the work
+  on that ticket ends or the user says stop.
+- **Search for duplicates before drafting a new ticket.**
 - **No secrets.** Never put passwords, tokens or API keys in a ticket or
   comment. Point to where they live instead ("see the password manager").
 - **Plain text only in Jira.** No arrows, emoji, check-box symbols or special
@@ -131,6 +192,7 @@ Rules for code work, used only when the ticket leads to a code change:
 | Situation | Default |
 | --- | --- |
 | Clear issue, code confirms the cause | Draft, then ask to confirm |
+| Cause not confirmed (no access, cannot reproduce) | File it anyway, with the cause marked as suspected |
 | Several possible causes | Look further, then ask one question |
 | User says "decide for me" | Pick and explain in one line |
 | Near-duplicate found | Suggest updating it instead |
@@ -146,10 +208,10 @@ Check those first.
 
 - Write or change code. Filing is filing; the work happens later, from the
   ticket.
-- Edit or delete existing comments (the connector cannot; ask the user to do
-  it in Jira).
-- Attach files (the connector cannot; the user can drag them into Jira).
 - Send email or chat messages.
+- Anything your connector version does not offer (for example attachments or
+  deleting comments). Check the tool list; if it is missing, tell the user
+  and give them the manual step.
 
 ## Worked example
 

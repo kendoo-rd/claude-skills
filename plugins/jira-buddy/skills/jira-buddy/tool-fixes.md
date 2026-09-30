@@ -1,17 +1,18 @@
 # Known Atlassian connector problems and fixes
 
-These are real problems seen with the Atlassian connector (MCP). Check this
-list before the first create, edit, search, label or status call.
+These are real problems seen with the Atlassian remote connector (MCP),
+last tested in September 2026. The connector changes often: a fix below may
+no longer be needed, and new tools may exist. Always prefer the tool's own
+description. When a problem below does not happen, skip its workaround.
 
 ## Creating a ticket
 
-- **Line breaks get lost on create.** A description sent with
-  `createJiraIssue` often comes back with a literal `\n` instead of real line
-  breaks, so the ticket shows as one block of text. Fix: right after
-  `createJiraIssue`, call `editJiraIssue` with the same description inside
-  `fields: {description: "..."}`. The edit keeps the line breaks. Think of
-  create as "make the ticket and title", and edit as "write the body". Skip
-  this only for one-line descriptions.
+- **Line breaks can get lost on create** (seen up to mid-2026). A
+  description sent with `createJiraIssue` sometimes comes back with a literal
+  `\n` instead of real line breaks, so the ticket shows as one block of text.
+  Check: read the ticket back after creating it. Fix, only if it happened:
+  call `editJiraIssue` with the same description inside
+  `fields: {description: "..."}`; the edit keeps the line breaks.
 - **`description` sits in a different place on create and edit.** On
   `createJiraIssue` it is a top-level parameter; inside `fields` it is
   silently ignored and the description stays empty. On `editJiraIssue` it
@@ -44,10 +45,13 @@ list before the first create, edit, search, label or status call.
   with spaces; use `kebab-case` (`needs-review`). `editJiraIssue` has no
   "add label": setting `fields: {labels: [...]}` replaces the full list. Read
   the current labels first, merge, and write back the whole list.
-- **Comments cannot be edited or deleted** through the connector. Get it right
-  before posting. If a comment is wrong, ask the user to fix it in Jira.
-- **Files cannot be attached** through the connector. Keep content in the
-  description, or give the user the text to drag into Jira.
+- **Editing a comment:** in the tested version, `addCommentToJiraIssue` adds
+  a new comment, or updates an existing one when you pass its `commentId`.
+  Keep the id returned when you post, so you can fix the same comment later.
+  Never fix a comment by posting a second one.
+- **Deleting comments and attaching files** were not available in the tested
+  version. Check your tool list. If they are missing, ask the user to do it in
+  Jira, or keep the content in the description.
 
 ## Links in pull requests and commits
 

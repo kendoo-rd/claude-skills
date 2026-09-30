@@ -20,8 +20,8 @@ the user asks to change the settings.
      (`project = KEY AND issuetype = Epic AND statusCategory != Done`).
    - Which Product Discovery project to search for ideas, if any.
    - Which Service Management project to search for known issues, if any.
-   - Which Confluence spaces to search for docs (`getConfluenceSpaces`), if
-     any.
+   - Confluence: search no spaces, some spaces (pick from
+     `getConfluenceSpaces`), or all spaces.
    - A default assignee, or none.
 4. **Show the settings file** and ask for a yes.
 5. **Save it** at `.claude/jira-buddy.json` in the project root. Tell the user
@@ -65,7 +65,7 @@ Skip any question with an obvious answer (for example, only one project).
 | `default_assignee` | Account id, or `null` for unassigned. |
 | `discovery_project` | Product Discovery project to search for ideas, or `null`. |
 | `service_desk_project` | Service Management project to search for known issues, or `null`. |
-| `confluence_spaces` | Space keys to search for docs. Empty means search all. |
+| `confluence_spaces` | `null`: do not search Confluence. `["KEY", ...]`: search only these spaces. `"all"`: search every space the user can see. |
 
 The file holds no secrets. Sign-in is handled by the Atlassian connector, not
 by this file.

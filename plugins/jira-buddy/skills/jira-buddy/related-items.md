@@ -52,7 +52,9 @@ Use `searchConfluenceUsingCql`:
 type = page AND text ~ "keyword" AND space in ("<SPACE-KEY>")
 ```
 
-Drop the `space` part when `confluence_spaces` is empty. Suggest the 1-3 most
+Follow `confluence_spaces` in the settings: `null` means skip this search;
+a list means keep the `space in (...)` part with those keys; `"all"` means
+drop the `space` part. Suggest the 1-3 most
 useful pages (specs, how-to pages, decision notes). Add them to the ticket as
 links in the description under "Related".
 
