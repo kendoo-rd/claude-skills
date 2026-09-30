@@ -7,19 +7,32 @@ a concrete case where it goes wrong.
 ## Changes with little or no code
 
 For changes that are only settings, docs or data files (JSON, YAML, Markdown,
-config), use these instead of passes 2 and 3:
+infrastructure or CI config), all five passes still apply. Adapt passes 2
+and 3 to what a settings change can break:
 
-- The files parse (valid JSON or YAML) and follow the schema the tool
-  expects.
-- New entries match their neighbours: same fields, same naming, paths that
-  exist.
-- Docs are accurate: commands, file names, options and examples match what
-  the code or tool really does.
-- No secrets, private addresses or personal data.
-- Anything that reads these files (build, deploy, loaders) still works with
-  the new values.
+**Correctness for settings**
+- The files parse and follow the schema the tool expects.
+- New entries match their neighbours: same fields, same naming, paths and
+  names that exist.
+- Values are right for each environment; defaults are safe when a value is
+  missing; nothing that was set before is silently dropped.
+- Anything that reads these files (build, deploy, CI, loaders, feature
+  flags) still behaves the same, or changes on purpose.
 
-Passes 1, 4 and 5 still apply.
+**Security for settings**
+- Checks turned off: certificate or signature checks, authentication, rate
+  limits, debug or verbose error modes switched on.
+- Permissions widened: roles, access policies, public buckets, open network
+  rules, broader CORS, new admin rights.
+- Secrets, private addresses or personal data added in plain text.
+
+**Performance and cost for settings**
+- Resource limits, timeouts, pool sizes, retries, cache lifetimes, instance
+  sizes: realistic, and not able to cause runaway cost.
+
+**Docs**
+- Commands, file names, options and examples match what the code or tool
+  really does.
 
 ## 1. The ask
 
@@ -73,13 +86,22 @@ Passes 1, 4 and 5 still apply.
 ## 3. Design, security and performance
 
 **Design patterns and best practices**
-- The right tool for the job: a pattern where it helps, a plain function
-  where it does not. Flag needless layers, factories or interfaces with one
-  user.
-- One clear job per function and class. Flag functions that mix unrelated
-  work (for example fetch data, format it and send email).
+
+Design points are findings only with evidence: a concrete consequence (a bug
+it causes or invites, a change it makes much harder, a test it prevents) or
+a written project rule it breaks. Taste alone is not a finding. At most a
+Nit, and only when the benefit is clear.
+
+- The right tool for the job. An extra layer, factory or interface with one
+  user is a finding only when it causes a real cost, for example the same
+  change now has to be made in three places.
+- Functions or classes that mix unrelated work (fetch data, format it and
+  send email) are a finding when that mixing causes a problem: it cannot be
+  tested, a failure in one part breaks another, or the codebase has a rule
+  against it.
 - Logic in the wrong layer (database queries in a view, business rules in a
-  controller) when the codebase separates them.
+  controller) when the codebase clearly separates them; name the files that
+  show the convention.
 - Best practices for the language and framework in use (for example
   parameterized queries, framework validation helpers, the framework's own
   way of handling dates or money).

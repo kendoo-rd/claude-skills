@@ -1,6 +1,6 @@
 {
   "name": "review-buddy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A careful code review: checks the change against what was asked, correctness, security, performance, codebase conventions and tests, with file:line evidence and a plain verdict.",
   "author": { "name": "Kendoo R&D Consulting" },
   "homepage": "https://github.com/kendoo-rd/claude-skills",
