@@ -117,7 +117,7 @@ Example:
 
 ## Summary (the ticket title)
 
-- 5-8 words, short and specific. Longer only when needed to be clear.
+- 5-10 words, short and specific. Longer only when needed to be clear.
 - **A bug** names the symptom, never the guessed cause.
   Good: "Signup form accepts phone numbers the server rejects."
 - **A piece of work** names what must be done, as an instruction.
