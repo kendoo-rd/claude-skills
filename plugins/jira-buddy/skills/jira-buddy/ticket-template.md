@@ -1,7 +1,8 @@
 # The ticket
 
-Two clearly separated halves. The top half is for everyone. The bottom half
-is for the person doing the work.
+Two clearly separated halves. The top half is for everyone and is required
+on every ticket. The bottom half, The tech part, is for the person doing the
+work. It is optional: include it when there is technical detail to hand over.
 
 The headings always appear in this order: What's happening, Why it matters,
 What we'll change, How we'll know it's working, Not in this task,
@@ -40,6 +41,9 @@ there is nothing to exclude.
 ---
 
 ## The tech part
+
+Optional. Include it when there is technical detail to hand over; leave it
+out when there is none.
 
 ### Current state
 
