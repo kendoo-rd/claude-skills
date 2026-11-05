@@ -3,6 +3,10 @@
 Two clearly separated halves. The top half is for everyone. The bottom half
 is for the person doing the work.
 
+The headings always appear in this order: What's happening, Why it matters,
+What we'll change, How we'll know it's working, Not in this task,
+Related / Reference, then The tech part.
+
 For work with no code (marketing, operations, support), keep the top half and
 replace the tech half with "Details": the steps, the people involved, and the
 files or pages needed.
@@ -24,7 +28,12 @@ A short numbered list (2-4 items) of the visible changes. Plain language.
 ## How we'll know it's working
 A short bulleted list of checks a non-technical person could do.
 
-## Related
+## Not in this task
+What people will ask about and should not expect here. One line per item.
+Name the ticket that covers it, if one exists. Leave the section out if
+there is nothing to exclude.
+
+## Related / Reference
 - Links to related tickets, the Product Discovery idea, Confluence pages,
   known issues. Leave the section out if there are none.
 

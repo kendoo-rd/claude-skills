@@ -56,7 +56,7 @@ Follow `confluence_spaces` in the settings: `null` means skip this search;
 a list means keep the `space in (...)` part with those keys; `"all"` means
 drop the `space` part. Suggest the 1-3 most
 useful pages (specs, how-to pages, decision notes). Add them to the ticket as
-links in the description under "Related".
+links in the description under "Related / Reference".
 
 ## 5. Known issues in Service Management
 
