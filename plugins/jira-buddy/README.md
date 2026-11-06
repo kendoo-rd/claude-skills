@@ -4,7 +4,7 @@ A friendly helper for Jira. Tell it about a problem in plain words, and it:
 
 - finds duplicates, the right epic, related Confluence pages, Product
   Discovery ideas and known issues in Service Management,
-- drafts a clear ticket with a business-language top half for everyone and
+- drafts a clear ticket with a business part for everyone and
   an optional tech part for the person doing the work,
 - splits big requests into an epic with smaller tickets,
 - updates status, labels and assignee safely,

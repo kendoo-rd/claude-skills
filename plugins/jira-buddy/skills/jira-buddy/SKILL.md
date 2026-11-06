@@ -63,7 +63,7 @@ attachments), say so and offer the manual step.
 
 ## Route by intent first
 
-Decide which of the four requests above this is, then follow only that path.
+Decide which of the 4 requests above this is, then follow only that path.
 Research and full drafts are for new work; a label change does not need a
 duplicate search.
 
@@ -113,7 +113,7 @@ several parts or spans more than one team:
   uses the same format as any ticket; see "Epics" in `ticket-template.md`.
 - Split into 3-8 child tickets. Each one must be deliverable on its own,
   split by what the user gets, not by layer or team.
-- If the work spans two code projects (for example the server sends a new
+- If the work spans 2 code projects (for example the server sends a new
   field and the app shows it), make one ticket per project, cross-link them,
   write "Paired with {OTHER-KEY}" in both, and state the order. The one that
   ships first must not break anything while the other is pending.
@@ -138,7 +138,7 @@ several parts or spans more than one team:
 1. **Read the ticket** the user named (`getJiraIssue`). If they did not name
    one, find it with a quick search and confirm which one.
 2. **Check the change is valid** with only the checks below that apply.
-3. **Show the change** in one or two lines ("KEY-12: status In Progress ->
+3. **Show the change** in 1 or 2 lines ("KEY-12: status In Progress ->
    Done, add label `needs-review`") and wait for a yes.
 4. **Apply it** and give the link.
 
@@ -162,7 +162,7 @@ this ticket, post without asking again.
 Leave the ticket unassigned unless the user or the settings name someone. But
 always suggest a person with the draft, with a one-line reason based on
 evidence: who raised it, who owns the ticket this blocks, who works in that
-area day to day. When two people fit, show both and recommend one. Set it only
+area day to day. When 2 people fit, show both and recommend one. Set it only
 after the user agrees.
 
 ## Hard rules
@@ -201,7 +201,7 @@ Rules for code work, used only when the ticket leads to a code change:
 | User says "decide for me" | Pick and explain in one line |
 | Near-duplicate found | Suggest updating it instead |
 | Fix is only a settings or environment change | Say so; no code ticket needed |
-| Work spans two code projects | Split into paired tickets |
+| Work spans 2 code projects | Split into paired tickets |
 | Anything that deletes data or touches production | Ask first, every time |
 
 A tip for code work: if production works and a test environment does not, on
@@ -228,7 +228,7 @@ fails with an error."
    anything that is not digits.
 4. No open questions.
 5. Draft: summary "Signup form accepts phone numbers the server rejects";
-   top half says the user fills the whole form and sees an error only after
+   business part says the user fills the whole form and sees an error only after
    saving; tech part quotes both files and lines and suggests the same check
    on the form. Priority Medium. Suggested assignee: the person who last
    worked on the form, with the reason. Link to the Confluence page.

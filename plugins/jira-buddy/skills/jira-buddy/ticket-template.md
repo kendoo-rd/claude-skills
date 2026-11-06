@@ -1,16 +1,16 @@
 # The ticket
 
-Two clearly separated halves. The top half is for everyone and is required
-on every ticket. The bottom half, The tech part, is for the person doing the
-work. It is optional: include it when there is technical detail to hand over.
+2 clearly separated parts. The business part is for everyone and is
+required on every ticket. The tech part is for the person doing the work.
+It is optional: include it when there is technical detail to hand over.
 
 The headings always appear in this order: What's happening, Why it matters,
 What we'll change, How we'll know it's working, Not in this task,
 Related / Reference, then The tech part.
 
-For work with no code (marketing, operations, support), keep the top half and
-replace the tech half with "Details": the steps, the people involved, and the
-files or pages needed.
+For work with no code (marketing, operations, support), keep the business
+part and replace the tech part with "Details": the steps, the people
+involved, and the files or pages needed.
 
 ## Template
 
@@ -90,9 +90,9 @@ section as "After investigation".
 Match the length to the work. The template is a maximum, not a minimum. For a
 one-line fix, "Current state" and "Fix" are a few sentences each.
 
-## "What's happening": three tests
+## "What's happening": 3 tests
 
-Keep it under 30 words, and check it three ways:
+Keep it under 30 words, and check it 3 ways:
 
 1. **Only what happens.** The present state and its effect. No
    recommendation; "should live in" or "needs to move" belong under "What
@@ -114,7 +114,7 @@ Example:
 
 ## Language
 
-- Top half: business language at B2-C1 level. Clear and professional, not
+- Business part: business language at B2-C1 level. Clear and professional, not
   simplified. Product and business terms are fine: onboarding, churn,
   conversion, invoice run. No technical terms: file names, endpoints, table
   names and error traces go in the tech part. Avoid inside words ("dogfood"
@@ -151,27 +151,27 @@ tickets. Ask if the project uses unusual types.
 ## Epics
 
 An epic uses the same format as any ticket: the same title rule, the same
-required top half, the same optional tech part (only when there is order or
+required business part, the same optional tech part (only when there is order or
 dependency detail to hand over). What differs: it names a goal, and its
-child tickets deliver it. The six headings read like this for an epic:
+child tickets deliver it. The 6 headings read like this for an epic:
 
 | Heading | For an epic |
 | --- | --- |
 | What's happening | The gap today, in the customer's words. |
 | Why it matters | Why now: a customer need, a risk, a deadline. |
 | What we'll change | The children, as results, in order. |
-| How we'll know it's working | Two to four checks that show the goal is reached. |
+| How we'll know it's working | 2-4 checks that show the goal is reached. |
 | Not in this task | What people will ask about and should not expect from this epic. |
 | Related / Reference | The idea it came from, decisions, customer reports. |
 
 - Open an epic when several tickets are needed to reach one goal. Reuse an
   open epic if one fits.
-- Three to eight children. Fewer is one story; more is two epics.
+- 3-8 children. Fewer is one story; more is 2 epics.
 - Each child is useful and testable on its own. Split by what the user gets,
   not by layer or team.
 - No bucket epics ("Tech debt", "Q1 improvements" never finish). No children
   named after a layer ("Backend", "QA", "Part 1 of 3").
-- When two children depend on each other, say which ships first.
+- When 2 children depend on each other, say which ships first.
 - Draft the epic and all its children together; review them before creating
   any.
 
@@ -214,7 +214,7 @@ Run through this before showing the final draft.
 - Type matches what the work is, not its size.
 - Title: 5-10 words, follows the rule for its type, no keys, dates, names or
   inside words.
-- Top half: business language, B2-C1, no technical terms, no inside words.
+- Business part: business language, B2-C1, no technical terms, no inside words.
 - "What's happening" describes the present state only, under 30 words.
 - "Why it matters" is in customer or business terms.
 - "What we'll change" is a numbered list of visible changes.
@@ -223,6 +223,6 @@ Run through this before showing the final draft.
 - "Related / Reference" has one link per bullet, each with a reason.
 - Tech part left out when there is nothing technical to hand over; cause
   labelled Confirmed or Suspected; fix marked Proposed when only suspected.
-- Epic: same format as every ticket, goal can finish, three to eight
+- Epic: same format as every ticket, goal can finish, 3-8
   children each useful on its own, release order stated where it matters.
 - Priority Medium unless there is a reason. Words, not symbols. No secrets.
