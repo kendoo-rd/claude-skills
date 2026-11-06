@@ -22,7 +22,8 @@ Side files in this folder, read them when the step needs them:
 - `setup.md` - first-run setup and the settings file.
 - `related-items.md` - how to find related tickets, epics, ideas, docs and
   known issues.
-- `ticket-template.md` - the two-part ticket, summary rules, priority guide.
+- `ticket-template.md` - the two-part ticket, language rules, summary rules,
+  epics, priority guide, the before-you-create checklist.
 - `comments.md` - progress comments and @-mentions.
 - `tool-fixes.md` - known Atlassian connector problems and their fixes. Read
   it before the first create, edit, search, label or status call.
@@ -94,7 +95,8 @@ setup.)
    work, show the epic plus every child ticket.
    Before showing the draft, check the project's required fields for that
    issue type (`getJiraIssueTypeMetaWithFields`) and fill them, so creation
-   does not fail halfway.
+   does not fail halfway. Then run the "Before you create" checklist in
+   `ticket-template.md`.
 6. **Create it only after a yes.** Then add the links, and give the user a
    clickable link for every ticket touched.
 7. **Narrate delivery later** with one-sentence comments (`comments.md`).
@@ -107,8 +109,10 @@ back; a concrete one saves the next person hours.
 Follow the "New ticket" steps, with these additions. When a request has
 several parts or spans more than one team:
 
-- Suggest an existing epic if one fits; otherwise draft a new epic.
-- Split into 3-8 child tickets. Each one must be deliverable on its own.
+- Suggest an existing epic if one fits; otherwise draft a new epic. An epic
+  uses the same format as any ticket; see "Epics" in `ticket-template.md`.
+- Split into 3-8 child tickets. Each one must be deliverable on its own,
+  split by what the user gets, not by layer or team.
 - If the work spans two code projects (for example the server sends a new
   field and the app shows it), make one ticket per project, cross-link them,
   write "Paired with {OTHER-KEY}" in both, and state the order. The one that
@@ -224,8 +228,8 @@ fails with an error."
    anything that is not digits.
 4. No open questions.
 5. Draft: summary "Signup form accepts phone numbers the server rejects";
-   plain half says the user fills the whole form and sees an error only after
-   saving; tech half quotes both files and lines and suggests the same check
+   top half says the user fills the whole form and sees an error only after
+   saving; tech part quotes both files and lines and suggests the same check
    on the form. Priority Medium. Suggested assignee: the person who last
    worked on the form, with the reason. Link to the Confluence page.
 6. User says yes. Ticket created under the epic, page linked, link shared.
