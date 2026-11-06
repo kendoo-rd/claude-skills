@@ -87,8 +87,10 @@ section as "After investigation".
 - Note any cross-project order or rollback plan.
 ```
 
-Match the length to the work. The template is a maximum, not a minimum. For a
-one-line fix, "Current state" and "Fix" are a few sentences each.
+Match the length to the work. The template is a maximum, not a form to fill.
+A few lines in total for a small fix; one short paragraph per part for a
+larger one. Use only the parts you need. A short tech part is read; a long
+one is skimmed.
 
 ## "What's happening": 3 tests
 
